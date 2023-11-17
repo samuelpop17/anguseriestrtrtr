@@ -7,7 +7,10 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./random.component.css']
 })
 export class RandomComponent {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  public duracion:number;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.duracion=13
+  }
   playAudio() {
     if (isPlatformBrowser(this.platformId)) {
       const audio = new Audio();
