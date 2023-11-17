@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-random',
@@ -6,8 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./random.component.css']
 })
 export class RandomComponent {
-public boxes:number
-constructor() {
-  this.boxes=8
-}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  playAudio() {
+    if (isPlatformBrowser(this.platformId)) {
+      const audio = new Audio();
+      audio.src = '/assets/audio/audio.mp3'; // Ruta al archivo de audio
+      audio.load();
+      audio.play();
+    }
+  }
+  
 }
